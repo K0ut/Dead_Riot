@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 4725814587386881516}
   - component: {fileID: 5629246616168476307}
   - component: {fileID: 1702940762833994630}
+  - component: {fileID: 3185396602876907086}
+  - component: {fileID: -4666408850206592682}
   m_Layer: 0
   m_Name: Capsule 1
   m_TagString: Untagged
@@ -134,3 +136,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5756445f36791a541b2e4a08ed747100, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3185396602876907086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7233720339467545060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1eed683bc6a58145a655115cdf737e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &-4666408850206592682
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7233720339467545060}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.99999994, y: 2.2389765, z: 1.0636542}
+  m_Center: {x: 0, y: -0.04957742, z: 0.009628466}
