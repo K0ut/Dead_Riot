@@ -4,7 +4,7 @@ using UnityEngine;  // Ensure all using statements are at the top
 
 public class SpawnManager : MonoBehaviour
 {
-    public GameObject[] enemyPrefabs;   // Array of zombie enemy prefabs
+    public GameObject[] enemyPrefabs;   // Array of enemy prefabs (e.g., zombies)
     public GameObject[] spawnPositions; // Array of spawn positions
     public int waveNumber = 1;          // Starting wave number
     private int defeatedEnemies = 0;     // Track how many enemies have been defeated
@@ -12,6 +12,9 @@ public class SpawnManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Initialize spawn positions if they aren't assigned manually
+        InitializeSpawnPositions();
+
         // Spawn the first wave of enemies
         SpawnEnemyWave(waveNumber);  // Spawn initial wave
     }
@@ -34,7 +37,28 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
-    // Method to spawn the enemies for the current wave
+    // Method to initialize spawn positions if not assigned
+    void InitializeSpawnPositions()
+    {
+        // Initialize the spawnPositions array with 4 spawn points
+        spawnPositions = new GameObject[4];
+
+        // Create and set spawn points at each of the four corners
+        spawnPositions[0] = CreateSpawnPoint(new Vector3(-10, 0, 10));  // Top-left corner
+        spawnPositions[1] = CreateSpawnPoint(new Vector3(10, 0, 10));   // Top-right corner
+        spawnPositions[2] = CreateSpawnPoint(new Vector3(-10, 0, -10)); // Bottom-left corner
+        spawnPositions[3] = CreateSpawnPoint(new Vector3(10, 0, -10));  // Bottom-right corner
+    }
+
+    // Method to create a spawn point GameObject at a given position
+    GameObject CreateSpawnPoint(Vector3 position)
+    {
+        GameObject spawnPoint = new GameObject("SpawnPoint");
+        spawnPoint.transform.position = position;
+        return spawnPoint;
+    }
+
+    // Method to spawn enemies for the current wave
     void SpawnEnemyWave(int enemiesToSpawn)
     {
         // Loop to spawn the required number of enemies
@@ -54,6 +78,7 @@ public class SpawnManager : MonoBehaviour
         }
     }
 }
+
 
 
 
