@@ -4,66 +4,53 @@ using UnityEngine;  // Ensure all using statements are at the top
 
 public class SpawnManager : MonoBehaviour
 {
-    public GameObject enemyPrefab;
-    public int enemyCount;
-    public int waveNumber = 1;
-    public GameObject[] enemyPrefabs;
-
-    // Predefined spawn positions
-    private Vector3[] spawnPositions = new Vector3[]
-    {
-        new Vector3(32.55f, 1.152101f, -27.56f),
-        new Vector3(32.55f, 1.152101f, 5.8f),
-        new Vector3(-34.2f, 1.152101f, 5.8f),
-        new Vector3(-34.2f, 1.152101f, -26f)
-    };
-
-    private int defeatedEnemies = 0;
+    public GameObject[] enemyPrefabs;   // Array of zombie enemy prefabs
+    public GameObject[] spawnPositions; // Array of spawn positions
+    public int waveNumber = 1;          // Starting wave number
+    private int defeatedEnemies = 0;     // Track how many enemies have been defeated
 
     // Start is called before the first frame update
     void Start()
     {
         // Spawn the first wave of enemies
-        SpawnEnemyWave(this.waveNumber);  // Use 'this' to avoid ambiguity
+        SpawnEnemyWave(waveNumber);  // Spawn initial wave
     }
 
     // Update is called once per frame
     void Update()
     {
         // Update the current enemy count
-        this.enemyCount = FindObjectsOfType<Zombie>().Length;  // Use 'this' to avoid ambiguity
+        int enemyCount = FindObjectsOfType<Zombie>().Length;  // Ensure to count the zombies in the scene
 
         // Check if all enemies are defeated
-        if (this.enemyCount == 0)  // Use 'this' to avoid ambiguity
+        if (enemyCount == 0)
         {
-            // Update defeated enemies count and calculate the next wave size
-            this.defeatedEnemies += this.waveNumber;  // Use 'this' to avoid ambiguity
-            this.waveNumber = this.defeatedEnemies * 2;  // Spawn twice the amount defeated
-            // Spawn the next wave
-            SpawnEnemyWave(this.waveNumber);  // Use 'this' to avoid ambiguity
+            // Double the number of enemies for the next wave
+            defeatedEnemies += waveNumber;
+            waveNumber = defeatedEnemies * 2;  // Multiply the wave number by 2 after each wave
+
+            // Spawn the next wave of enemies
+            SpawnEnemyWave(waveNumber);
         }
     }
 
+    // Method to spawn the enemies for the current wave
     void SpawnEnemyWave(int enemiesToSpawn)
     {
-        int spawnPosIndex = 0;
-
-        // Ensure enemiesToSpawn does not exceed the available spawn positions
-        int enemiesToSpawnAdjusted = Mathf.Min(enemiesToSpawn, spawnPositions.Length);
-
-        for (int i = 0; i < enemiesToSpawnAdjusted; i++)
+        // Loop to spawn the required number of enemies
+        for (int i = 0; i < enemiesToSpawn; i++)
         {
-            // Select a random enemy prefab from the list
-            int randomEnemy = Random.Range(0, enemyPrefabs.Length);  // Use 'this' to avoid ambiguity
+            // Randomly select an enemy prefab from the array
+            int randomEnemyIndex = Random.Range(0, enemyPrefabs.Length);
 
-            // Use the predefined spawn positions
-            Vector3 spawnPosition = spawnPositions[spawnPosIndex];
+            // Randomly select a spawn position from the spawn positions array
+            int randomSpawnIndex = Random.Range(0, spawnPositions.Length);
 
-            // Instantiate the selected enemy at the spawn position
-            Instantiate(enemyPrefabs[randomEnemy], spawnPosition, enemyPrefabs[randomEnemy].transform.rotation);
+            // Get the random spawn position
+            Vector3 spawnPosition = spawnPositions[randomSpawnIndex].transform.position;
 
-            // Update the spawn position index (looping back if necessary)
-            spawnPosIndex = (spawnPosIndex + 1) % spawnPositions.Length;
+            // Instantiate the selected enemy at the selected spawn position
+            Instantiate(enemyPrefabs[randomEnemyIndex], spawnPosition, Quaternion.identity);
         }
     }
 }
