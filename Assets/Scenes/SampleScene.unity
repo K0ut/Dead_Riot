@@ -691,11 +691,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b76a766225c80fe46913db0f6b60fae2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 8327892529434018012, guid: 903fc324415f06843800e07fba1246d0, type: 3}
-  enemyCount: 0
-  waveNumber: 4
   enemyPrefabs:
-  - {fileID: 0}
+  - {fileID: 5712567407565747969, guid: 49aae4c47330f6b4e8ec7429f64814b5, type: 3}
+  spawnPositions: []
+  waveNumber: 1
 --- !u!1 &658697325
 GameObject:
   m_ObjectHideFlags: 0
@@ -1859,83 +1858,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2040980047}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!1001 &1332753613
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1456515740295610940, guid: 903fc324415f06843800e07fba1246d0, type: 3}
-      propertyPath: m_Size.y
-      value: 1.7535015
-      objectReference: {fileID: 0}
-    - target: {fileID: 1456515740295610940, guid: 903fc324415f06843800e07fba1246d0, type: 3}
-      propertyPath: m_Center.y
-      value: -0.3767503
-      objectReference: {fileID: 0}
-    - target: {fileID: 1456515740295610940, guid: 903fc324415f06843800e07fba1246d0, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2015166664858686761, guid: 903fc324415f06843800e07fba1246d0, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -3.4776182
-      objectReference: {fileID: 0}
-    - target: {fileID: 2015166664858686761, guid: 903fc324415f06843800e07fba1246d0, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.54
-      objectReference: {fileID: 0}
-    - target: {fileID: 2015166664858686761, guid: 903fc324415f06843800e07fba1246d0, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -6.212144
-      objectReference: {fileID: 0}
-    - target: {fileID: 2015166664858686761, guid: 903fc324415f06843800e07fba1246d0, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2015166664858686761, guid: 903fc324415f06843800e07fba1246d0, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2015166664858686761, guid: 903fc324415f06843800e07fba1246d0, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2015166664858686761, guid: 903fc324415f06843800e07fba1246d0, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2015166664858686761, guid: 903fc324415f06843800e07fba1246d0, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2015166664858686761, guid: 903fc324415f06843800e07fba1246d0, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2015166664858686761, guid: 903fc324415f06843800e07fba1246d0, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2720236735668645003, guid: 903fc324415f06843800e07fba1246d0, type: 3}
-      propertyPath: m_Constraints
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6058440256643009713, guid: 903fc324415f06843800e07fba1246d0, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8327892529434018012, guid: 903fc324415f06843800e07fba1246d0, type: 3}
-      propertyPath: m_Name
-      value: Zombie (1)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 903fc324415f06843800e07fba1246d0, type: 3}
 --- !u!1 &1418514247
 GameObject:
   m_ObjectHideFlags: 0
@@ -2642,4 +2564,3 @@ SceneRoots:
   - {fileID: 1494666411723120432}
   - {fileID: 1418514248}
   - {fileID: 2040980047}
-  - {fileID: 1332753613}
