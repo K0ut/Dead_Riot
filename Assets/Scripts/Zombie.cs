@@ -14,7 +14,7 @@ public class Zombie : MonoBehaviour
         enemyRb = GetComponent<Rigidbody>();
         player = GameObject.Find("Player");
 
-        // Find all objects with the "Obstacle" tag
+        // Find all objects with the "Obstacle" tag and ignore collision with them
         GameObject[] obstacleObjects = GameObject.FindGameObjectsWithTag("Obstacle");
 
         // Loop through the found objects and ignore collisions with them
@@ -50,16 +50,29 @@ public class Zombie : MonoBehaviour
         }
     }
 
-    // When the zombie collides with something, it will disappear (destroy itself)
+    // When the zombie collides with something, it will not despawn (does not destroy itself)
     private void OnCollisionEnter(Collision collision)
     {
+        // Debug: Log the collision to see which object the zombie collides with
+        Debug.Log($"Zombie collided with: {collision.gameObject.name}");
+
         // If the zombie collides with an obstacle, it does NOT despawn
-        // Keep the zombies alive, they don't get destroyed by collisions with obstacles
         if (collision.gameObject.CompareTag("Obstacle"))
         {
             // The zombie won't despawn when hitting an obstacle; no need for any additional code here.
-            // You can optionally add logic to handle what happens when they hit the wall (e.g., bounce, change direction, etc.)
+            return; // No need to destroy or do anything else.
         }
+
+        // If the zombie collides with another zombie, it should NOT despawn
+        if (collision.gameObject.CompareTag("Zombie"))
+        {
+            // The zombies won't despawn upon collision with another zombie
+            // They can continue their behavior without destruction.
+            // You can optionally make them react in another way, but they won't be destroyed here.
+            return; // Prevent any destruction logic for zombie-on-zombie collisions.
+        }
+
+        // Other collision logic can be added here, for example, if zombies hit the player or certain items.
     }
 }
 

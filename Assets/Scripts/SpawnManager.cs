@@ -4,16 +4,17 @@ using UnityEngine;  // Ensure all using statements are at the top
 public class SpawnManager : MonoBehaviour
 {
     public GameObject[] enemyPrefabs;   // Array of enemy prefabs (e.g., zombies)
-    public GameObject[] spawnPositions; // Array of spawn positions
     public int waveNumber = 1;          // Starting wave number (and initial number of zombies)
     private int defeatedEnemies = 0;    // Track how many enemies have been defeated
+
+    private Vector3 upperLeft = new Vector3(-34.5f, 1.68f, 6.1f);  // Upper-left spawn point
+    private Vector3 upperRight = new Vector3(34.5f, 1.68f, 6.1f); // Upper-right spawn point
+    private Vector3 lowerLeft = new Vector3(-35.6f, 1.68f, -23.7f); // Lower-left spawn point
+    private Vector3 lowerRight = new Vector3(34.5f, 1.68f, -23.7f); // Lower-right spawn point
 
     // Start is called before the first frame update
     void Start()
     {
-        // Initialize spawn positions if they aren't assigned manually
-        InitializeSpawnPositions();
-
         // Spawn the first wave of enemies
         SpawnEnemyWave(waveNumber);  // Spawn zombies equal to waveNumber initially
     }
@@ -35,27 +36,6 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
-    // Method to initialize spawn positions if not assigned
-    void InitializeSpawnPositions()
-    {
-        // Initialize the spawnPositions array with 4 spawn points if not manually set
-        spawnPositions = new GameObject[4];
-
-        // Create and set spawn points at each of the four corners
-        spawnPositions[0] = CreateSpawnPoint(new Vector3(-10, 2, 10));  // Top-left corner
-        spawnPositions[1] = CreateSpawnPoint(new Vector3(10, 2, 10));   // Top-right corner
-        spawnPositions[2] = CreateSpawnPoint(new Vector3(-10, 2, -10)); // Bottom-left corner
-        spawnPositions[3] = CreateSpawnPoint(new Vector3(10, 2, -10));  // Bottom-right corner
-    }
-
-    // Method to create a spawn point GameObject at a given position
-    GameObject CreateSpawnPoint(Vector3 position)
-    {
-        GameObject spawnPoint = new GameObject("SpawnPoint");
-        spawnPoint.transform.position = position;
-        return spawnPoint;
-    }
-
     // Method to spawn enemies for the current wave
     void SpawnEnemyWave(int enemiesToSpawn)
     {
@@ -65,15 +45,28 @@ public class SpawnManager : MonoBehaviour
             // Randomly select an enemy prefab from the array
             int randomEnemyIndex = Random.Range(0, enemyPrefabs.Length);
 
-            // Randomly select a spawn position from the spawn positions array
-            int randomSpawnIndex = Random.Range(0, spawnPositions.Length);
-
-            // Get the random spawn position
-            Vector3 spawnPosition = spawnPositions[randomSpawnIndex].transform.position;
+            // Calculate a random spawn position within the bounding box of the four corners
+            Vector3 randomSpawnPosition = GetRandomSpawnPosition();
 
             // Instantiate the selected enemy at the selected spawn position
-            Instantiate(enemyPrefabs[randomEnemyIndex], spawnPosition, Quaternion.identity);
+            Instantiate(enemyPrefabs[randomEnemyIndex], randomSpawnPosition, Quaternion.identity);
         }
+    }
+
+    // Method to calculate a random spawn position within the area defined by the four corners
+    Vector3 GetRandomSpawnPosition()
+    {
+        float xMin = Mathf.Min(upperLeft.x, lowerLeft.x);
+        float xMax = Mathf.Max(upperRight.x, lowerRight.x);
+        float zMin = Mathf.Min(lowerLeft.z, lowerRight.z);
+        float zMax = Mathf.Max(upperLeft.z, upperRight.z);
+
+        // Generate random x and z values within the bounding box defined by the four points
+        float randomX = Random.Range(xMin, xMax);
+        float randomZ = Random.Range(zMin, zMax);
+
+        // Return the new random spawn position (y is fixed)
+        return new Vector3(randomX, 1.68f, randomZ);
     }
 }
 

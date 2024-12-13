@@ -693,7 +693,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefabs:
   - {fileID: 5712567407565747969, guid: 49aae4c47330f6b4e8ec7429f64814b5, type: 3}
-  spawnPositions: []
   waveNumber: 1
 --- !u!1 &658697325
 GameObject:
@@ -1254,7 +1253,7 @@ GameObject:
   - component: {fileID: 769756776}
   m_Layer: 0
   m_Name: Obstacle (2)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1538,7 +1537,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.14, y: 0.1, z: -10.29}
-  m_LocalScale: {x: 10.265479, y: 2.7379537, z: 6.2762294}
+  m_LocalScale: {x: 83.84371, y: 2.7379537, z: 47.16649}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
