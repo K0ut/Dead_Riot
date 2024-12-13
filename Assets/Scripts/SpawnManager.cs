@@ -30,8 +30,8 @@ public class SpawnManager : MonoBehaviour
             // If all enemies are defeated, increase the wave number and spawn the next wave
             defeatedEnemies += waveNumber;
 
-            // Set the number of zombies to spawn for the next wave, multiplying by 2
-            waveNumber = (int)Mathf.Pow(2, defeatedEnemies); // Multiply by 2 for each wave (2^n)
+            // Increment waveNumber by 1, so the next wave will have one more zombie than the previous one
+            waveNumber += 1;  // Increase wave number by 1 for the next wave
 
             // Spawn the next wave of enemies
             SpawnEnemyWave(waveNumber);  // Spawn zombies equal to the current wave number
