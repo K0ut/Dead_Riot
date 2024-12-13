@@ -27,13 +27,10 @@ public class SpawnManager : MonoBehaviour
         // Check if all enemies are defeated
         if (enemyCount == 0)
         {
-            // If all enemies are defeated, increase the wave number and spawn the next wave
-            defeatedEnemies += waveNumber;
-
-            // Increment waveNumber by 1, so the next wave will have one more zombie than the previous one
+            // If all enemies are defeated, spawn the next wave and increment the wave number
             waveNumber += 1;  // Increase wave number by 1 for the next wave
 
-            // Spawn the next wave of enemies
+            // Spawn the next wave of enemies (spawn zombies equal to the current wave number)
             SpawnEnemyWave(waveNumber);  // Spawn zombies equal to the current wave number
         }
     }
